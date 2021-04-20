@@ -25,6 +25,12 @@ ClassicEditor
           'bulletedList',
           'audioUpload',
         ],
+        audio: {
+            upload: {
+                types: ['mpeg', 'mp3'],
+                allowMultipleFiles: false,
+            }
+        }
     } )
     .then( editor => {
         console.log( 'Editor was initialized', editor );
