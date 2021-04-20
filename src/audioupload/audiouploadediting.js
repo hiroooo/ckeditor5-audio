@@ -44,7 +44,6 @@ export default class AudioUploadEditing extends Plugin {
         });
 
         editor.commands.add('uploadAudio', new UploadAudioCommand(editor))
-        console.log("command", new UploadAudioCommand(editor))
 
         // Register upcast converter for uploadId.
         conversion.for('upcast')
@@ -56,39 +55,39 @@ export default class AudioUploadEditing extends Plugin {
                 model: 'uploadId'
             });
 
-        this.listenTo(editor.editing.view.document, 'clipboardInput', (evt, data) => {
-            // Skip if non empty HTML data is included.
-            // https://github.com/ckeditor/ckeditor5-upload/issues/68
-            if (isHtmlIncluded(data.dataTransfer)) {
-                return;
-            }
+        //this.listenTo(editor.editing.view.document, 'clipboardInput', (evt, data) => {
+        //    // Skip if non empty HTML data is included.
+        //    // https://github.com/ckeditor/ckeditor5-upload/issues/68
+        //    if (isHtmlIncluded(data.dataTransfer)) {
+        //        return;
+        //    }
 
-            const audios = Array.from(data.dataTransfer.files).filter(file => {
-                // See https://github.com/ckeditor/ckeditor5-image/pull/254.
-                if (!file) {
-                    return false;
-                }
+        //    const audios = Array.from(data.dataTransfer.files).filter(file => {
+        //        // See https://github.com/ckeditor/ckeditor5-image/pull/254.
+        //        if (!file) {
+        //            return false;
+        //        }
 
-                return audioTypes.test(file.type);
-            });
+        //        return audioTypes.test(file.type);
+        //    });
 
-            const ranges = data.targetRanges.map(viewRange => editor.editing.mapper.toModelRange(viewRange));
+        //    const ranges = data.targetRanges.map(viewRange => editor.editing.mapper.toModelRange(viewRange));
 
-            editor.model.change(writer => {
-                // Set selection to paste target.
-                writer.setSelection(ranges);
+        //    editor.model.change(writer => {
+        //        // Set selection to paste target.
+        //        writer.setSelection(ranges);
 
-                if (audios.length) {
-                    evt.stop();
+        //        if (audios.length) {
+        //            evt.stop();
 
-                    // Upload audios after the selection has changed in order to ensure the command's state is refreshed.
-                    editor.model.enqueueChange('default', () => {
-                        //editor.execute('audioUpload', { file: audios });
-                        editor.execute('uploadAudio', { file: audios });
-                    });
-                }
-            });
-        });
+        //            // Upload audios after the selection has changed in order to ensure the command's state is refreshed.
+        //            editor.model.enqueueChange('default', () => {
+        //                //editor.execute('audioUpload', { file: audios });
+        //                editor.execute('uploadAudio', { file: audios });
+        //            });
+        //        }
+        //    });
+        //});
 
 
         this.listenTo(editor.plugins.get(Clipboard), 'inputTransformation', (evt, data) => {
