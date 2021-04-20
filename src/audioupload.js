@@ -1,5 +1,6 @@
 import Plugin from "@ckeditor/ckeditor5-core/src/plugin";
 import AudioUploadUI from "./audioupload/audiouploadui";
+console.log(AudioUploadUI)
 import AudioUploadEditing from "./audioupload/audiouploadediting";
 import AudioUploadProgress from "./audioupload/audiouploadprogress";
 

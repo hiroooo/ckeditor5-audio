@@ -3,7 +3,7 @@ import audioUploadIcon from '../../theme/icons/audio.svg';
 import {createAudioMediaTypeRegExp} from "./utils";
 import FileDialogButtonView from "@ckeditor/ckeditor5-upload/src/ui/filedialogbuttonview";
 
-export default class Audiouploadui extends Plugin {
+export default class AudioUploadUI extends Plugin {
     init() {
         const editor = this.editor;
         const t = editor.t;

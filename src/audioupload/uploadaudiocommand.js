@@ -12,7 +12,7 @@ function uploadAudio( writer, model, fileRepository, file ) {
     insertAudio( writer, model, { uploadId: loader.id } );
 }
 
-export default class Uploadaudiocommand extends Command {
+export default class UploadAudioCommand extends Command {
     execute( options ) {
         const editor = this.editor;
         const model = editor.model;

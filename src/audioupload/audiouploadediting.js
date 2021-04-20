@@ -44,6 +44,7 @@ export default class AudioUploadEditing extends Plugin {
         });
 
         editor.commands.add('uploadAudio', new UploadAudioCommand(editor))
+        console.log("command", new UploadAudioCommand(editor))
 
         // Register upcast converter for uploadId.
         conversion.for('upcast')
@@ -82,7 +83,9 @@ export default class AudioUploadEditing extends Plugin {
 
                     // Upload audios after the selection has changed in order to ensure the command's state is refreshed.
                     editor.model.enqueueChange('default', () => {
-                        editor.execute('audioUpload', { file: audios });
+                        // @edit
+                        //editor.execute('audioUpload', { file: audios });
+                        editor.execute('uploadAudio', { file: audios });
                     });
                 }
             });
